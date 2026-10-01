@@ -3,8 +3,8 @@ name: metric-card
 description: >-
   KPI/stat cards using the pre-built, protected `MetricCard`: default, icon, sparkline,
   progress and hero variants with count-up animation and hover elevation already wired
-  in. Covers grid composition and variant mixing. Use on any dashboard page that
-  surfaces KPI numbers.
+  in. Covers grid composition and variant mixing. Use when a dashboard page surfaces
+  KPI numbers.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

@@ -4,7 +4,7 @@ description: >-
   Drag-and-drop kanban board with columns, cards, tags, priority levels, assignee
   avatars, due dates, WIP limits, search/filter and a card-detail drawer, built on the
   native HTML5 Drag and Drop API. Generates 12-15 realistic demo cards across four
-  columns. Use for task boards, sprint planning and workflow screens.
+  columns. Use when building task boards, sprint planning or workflow screens.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

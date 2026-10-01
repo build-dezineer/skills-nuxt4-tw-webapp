@@ -2,8 +2,8 @@
 name: modal
 description: >-
   Centered confirmation and detail dialogs using Radix-Vue Dialog, with overlay and
-  panel animations driven by `data-[state]` attributes. Use for delete confirmations,
-  focused detail views and short overlays that do not need a full drawer.
+  panel animations driven by `data-[state]` attributes. Use when building delete
+  confirmations, focused detail views or short overlays that do not need a full drawer.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

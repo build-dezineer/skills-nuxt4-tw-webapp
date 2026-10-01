@@ -3,8 +3,8 @@ name: product-catalog
 description: >-
   Web-app storefront product browsing: a dense app-styled `ProductCard` plus
   `ProductCatalog` with search, category chips, sort, responsive grid and loading/empty
-  states. Reads `useProducts` and adds to cart via `useCart` + `useCartDrawer`. Use for
-  shop or catalog pages inside the sidebar shell.
+  states. Reads `useProducts` and adds to cart via `useCart` + `useCartDrawer`. Use when
+  building shop or catalog pages inside the sidebar shell.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

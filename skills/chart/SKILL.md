@@ -3,8 +3,8 @@ name: chart
 description: >-
   Data visualization with Chart.js via the pre-built, protected `ChartWrapper`: line,
   bar and doughnut charts with loading/empty/error states and CSS-variable colours via
-  `cssVar()`. Use on analytics, dashboard and reporting pages whenever data needs
-  visual encoding beyond a table.
+  `cssVar()`. Use when an analytics, dashboard or reporting page needs visual
+  encoding beyond a table.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

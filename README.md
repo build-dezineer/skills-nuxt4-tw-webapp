@@ -40,6 +40,15 @@ Looking for marketing-website sections instead? See the sibling library
 Each skill is a folder containing a `SKILL.md` plus optional `references/` and
 `evals/`. Copy or symlink the skill folders into your client's skills directory.
 
+**skills CLI** — installs into any detected agent (Claude Code, Codex, OpenCode,
+Cursor, and [many more](https://github.com/vercel-labs/skills#supported-agents)):
+
+```bash
+npx skills add build-dezineer/skills-nuxt4-tw-webapp
+```
+
+Use `--list` to preview the skills first, or `--skill table` to install one.
+
 **Dezineer** — Settings → **Skills** → install from GitHub with:
 
 ```

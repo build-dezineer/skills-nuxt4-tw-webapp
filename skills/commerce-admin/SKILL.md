@@ -4,7 +4,7 @@ description: >-
   Merchant back-office composition: orders table + detail drawer, inventory table with
   stock-edit forms, a KPI/chart sales dashboard and a fulfillment kanban wired to
   `useOrders`/`useProducts`. Uses the table, chart, metric-card, form and kanban skills
-  instead of reimplementing them. Use for admin and store-manager screens.
+  instead of reimplementing them. Use when building admin or store-manager screens.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

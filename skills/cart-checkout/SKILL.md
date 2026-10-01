@@ -3,8 +3,8 @@ name: cart-checkout
 description: >-
   Web-app storefront cart and checkout: `useCartDrawer`, a Radix Dialog `CartDrawer`
   mounted once in the shell, a `CartButton` for header actions, a mock-payment checkout
-  page and an order-confirmation page. Clears the cart on place-order. Use for the
-  buying flow after commerce-core.
+  page and an order-confirmation page. Clears the cart on place-order. Use when
+  building the buying flow after commerce-core.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

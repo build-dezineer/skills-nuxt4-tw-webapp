@@ -4,7 +4,7 @@ description: >-
   Full data table covering sorting, filtering, pagination, CSV export, row selection,
   expandable rows and column visibility, built on the pre-built `DataTable` +
   `useDataTable` + `DataTablePagination`. Handles loading, error, empty and data states.
-  Use for any admin or list screen showing 5+ tabular rows.
+  Use when building an admin or list screen with 5+ tabular rows.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

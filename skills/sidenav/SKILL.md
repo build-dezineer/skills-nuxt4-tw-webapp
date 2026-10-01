@@ -4,7 +4,7 @@ description: >-
   Sidebar navigation for app layouts in four variants: collapsible (w-64/w-16), icon
   rail with Radix tooltips, floating elevated card, and always-fixed overlay. Handles
   role-based sections, `useRoute()` active state, mobile slide-in and NuxtLink routing.
-  Use for any `layout: default` app shell.
+  Use when building any `layout: default` app shell.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

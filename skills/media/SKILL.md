@@ -4,7 +4,7 @@ description: >-
   Placeholder-aware media contract: emit plain `<img data-media-id>` and `<video
   data-media-id>` elements and the build pipeline injects real asset paths after
   download. Covers static and responsive images, videos with poster, and CSS background
-  images. Use whenever a section needs to display media or reserve space for assets the
+  images. Use when a section needs to display media or reserve space for assets the
   designer will replace later.
 license: Apache-2.0
 compatibility: >-

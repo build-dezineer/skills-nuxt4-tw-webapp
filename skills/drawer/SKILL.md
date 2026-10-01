@@ -4,7 +4,7 @@ description: >-
   Slide-in panels built on the pre-built `DrawerRoot` (Radix-Vue Dialog): right/left/bottom
   positions, sm/md/lg/full sizes, and a sticky header + scrollable body + footer
   structure. Includes feature drawers that own their form state, with a complete example.
-  Use for add/edit records, detail views, settings and cart panels.
+  Use when building add/edit records, detail views, settings or cart panels.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared

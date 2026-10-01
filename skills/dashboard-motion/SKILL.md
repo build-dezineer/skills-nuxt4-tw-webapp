@@ -3,8 +3,8 @@ name: dashboard-motion
 description: >-
   The webapp motion toolkit: count-up numbers through `useCounter` (already wired into
   MetricCard) and the `.stagger-children` CSS utility for card-grid and table-row
-  entrances. Dependency-free and reduced-motion safe. Use on dashboard, analytics and
-  list screens.
+  entrances. Dependency-free and reduced-motion safe. Use when building dashboard,
+  analytics or list screens.
 license: Apache-2.0
 compatibility: >-
   Requires a Dezineer-scaffolded Nuxt 4 project (Tailwind v4 design tokens, shared
