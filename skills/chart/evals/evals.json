@@ -1,0 +1,43 @@
+{
+  "skill_name": "chart",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "The analytics page needs a monthly revenue line chart (filled area) with a KPI row above it showing total revenue and active users. Data comes from our API as plain numbers.",
+      "expected_output": "A page that imports the pre-built ChartWrapper and MetricCard, builds the ChartData with cssVar()/cssVarAlpha() from ~/utils/chartColors, and gives the wrapping card a fixed height (e.g. h-72) rather than the chart itself.",
+      "files": [],
+      "assertions": [
+        "Imports ChartWrapper from ~/components/shared/ChartWrapper.vue instead of constructing a Chart.js canvas",
+        "Dataset colours come from cssVar()/cssVarAlpha() imported from ~/utils/chartColors",
+        "The height class (e.g. h-72) is on the wrapping div, not on ChartWrapper",
+        "The line dataset uses fill: true with cssVarAlpha('--primary', 0.15) as backgroundColor",
+        "The KPI row uses the pre-built MetricCard rather than a hand-rolled stat card"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Show our sales pipeline stages as a doughnut chart next to the deals table. Sometimes the stage breakdown comes back empty for new accounts.",
+      "expected_output": "A doughnut ChartWrapper with slice colours from the --chart-1..--chart-5 tokens via cssVar(), sized by its wrapper card, with the empty case left to ChartWrapper's built-in state machine.",
+      "files": [],
+      "assertions": [
+        "Uses ChartWrapper with type=\"doughnut\"",
+        "Slice colours use cssVar('--chart-1'), cssVar('--chart-2'), etc. — no hardcoded hex/rgb/hsl",
+        "Does not append an alpha suffix by string concatenation (no cssVar('--primary') + '20')",
+        "Does not add custom empty-state markup inside ChartWrapper; the built-in states handle it",
+        "The wrapper card controls the height"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want one chart comparing monthly revenue (thousands) with refunds (tens). Right now when I tried it the refunds line was flat on the bottom.",
+      "expected_output": "Two series with strongly different magnitudes given separate y-axes (yAxisID 'y1' plus a matching scales.y1 entry positioned right with grid.drawOnChartArea false), or split into two charts — never shared onto one axis.",
+      "files": [],
+      "assertions": [
+        "The refunds series does not share the primary y-axis with revenue",
+        "Either a second axis (yAxisID + scales.y1, position right, grid.drawOnChartArea false) or two separate charts is used",
+        "No legend entry is rendered for a series that is invisible on the chart",
+        "Colours still come from cssVar()/cssVarAlpha()"
+      ]
+    }
+  ]
+}

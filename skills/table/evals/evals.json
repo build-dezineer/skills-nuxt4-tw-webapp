@@ -1,0 +1,44 @@
+{
+  "skill_name": "table",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build the Orders page at app/pages/orders.vue for our admin app. It lists orders from useOrders() with sortable columns (order, customer, status, total), a search box, a per-column status filter, 25 rows per page, and CSV export. Status should render as a coloured badge.",
+      "expected_output": "The three-file table implementation: useDataTable in app/composables/useDataTable.ts, DataTable.vue and DataTablePagination.vue in app/components/shared/. The page imports only DataTable, supplies columns and rows, and renders status through the #cell-status slot. All four states (loading, error, empty, data) are present with error before empty.",
+      "files": [],
+      "assertions": [
+        "Creates app/composables/useDataTable.ts, app/components/shared/DataTable.vue, and app/components/shared/DataTablePagination.vue",
+        "The page imports only DataTable from ~/components/shared/DataTable.vue and never calls useDataTable directly",
+        "Status badges render through the #cell-status scoped slot rather than returning markup from col.cell",
+        "Loading, error, empty and data states are all handled, with the error check before the empty check",
+        "CSV export uses the composable's exportCSV and respects visible columns"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our inventory page needs bulk actions. 100+ products, so give me row checkboxes with select-all, expandable rows that reveal warehouse details, and a sticky header. Support 25/50/100 per page.",
+      "expected_output": "A DataTable-based inventory page with selectable and expandable rows, stickyHeader enabled, pageSizeOptions covering 25/50/100, and an expansion slot rendering the warehouse detail. No hand-rolled <table> markup.",
+      "files": [],
+      "assertions": [
+        "Uses the pre-built DataTable component instead of writing a raw <table> element",
+        "Passes selectable and sticky-header options through DataTable props",
+        "Selection state comes from the composable's selected set / toggleRow, not local page state",
+        "Expandable rows use the expansion slot and only render detail when expanded",
+        "pageSizeOptions includes 25, 50 and 100"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The /users page should list invited users. The API sometimes fails and the list is often empty in staging — make sure both cases look intentional and the user can retry.",
+      "expected_output": "An error state with icon, message and a working retry, rendered before the empty state; an empty state with Inbox icon and descriptive copy; loading skeletons sized to the current page size. One state visible at a time via v-if/v-else-if.",
+      "files": [],
+      "assertions": [
+        "The error state renders before the empty state in the v-if chain",
+        "The error state includes a retry action wired to the composable's onRetry/refresh",
+        "The empty state uses muted styling and an inbox-style icon, not an error look",
+        "Loading skeletons render pageSize rows with animate-pulse",
+        "Only one of loading, error, empty and data is visible at a time"
+      ]
+    }
+  ]
+}

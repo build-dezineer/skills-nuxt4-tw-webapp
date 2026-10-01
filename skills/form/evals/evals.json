@@ -1,0 +1,42 @@
+{
+  "skill_name": "form",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add an \"Add member\" flow to the team settings page. It should open a right-side drawer with name, email, role select and an optional note. Required fields must validate, a failed save shows an error banner, and everything is disabled while saving.",
+      "expected_output": "A feature drawer that composes the pre-built DrawerRoot with a form body, field-level errors, a destructive error banner, a footer with Cancel and a Save button that shows a Loader2 spinner and disables the form while submitting.",
+      "files": [],
+      "assertions": [
+        "Imports DrawerRoot from ~/components/shared/DrawerRoot.vue and never rebuilds the drawer shell",
+        "Save button renders Loader2 with animate-spin while saving and the fields are disabled",
+        "The submit-failure banner uses bg-destructive/10 text-destructive, not bg-muted",
+        "Field errors render below the input in text-destructive with an AlertCircle icon",
+        "Inputs use the focus-visible:ring-ring focus treatment"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We need a simple login form on the auth page — just email and password with a show/hide toggle and a submit button that shows a spinner. Two fields only, keep it on the page.",
+      "expected_output": "An inline form (no drawer) with email and password fields, an Eye/EyeOff password visibility toggle, and a submit button with loading and disabled states.",
+      "files": [],
+      "assertions": [
+        "Uses the inline form pattern, not a drawer",
+        "Password visibility toggles between Eye and EyeOff icons",
+        "The submit button shows a Loader2 spinner and is disabled while loading",
+        "Submit button keeps the tactile hover:scale-[1.02] active:scale-[0.98] classes"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "In the settings panel, add a tiny inline form to rename the current workspace (single text field, max 40 chars) with Save and Cancel.",
+      "expected_output": "A one-field inline form with validation for the 40-character limit, disabled Save while submitting, and the shared input/button token styles.",
+      "files": [],
+      "assertions": [
+        "Uses the inline pattern for the single-field case",
+        "Validates the 40-character limit and shows a field error when exceeded",
+        "Save shows the loading state and disables while in flight",
+        "Input and button styling uses design tokens (border-input, ring-ring, bg-primary) with no hardcoded colours"
+      ]
+    }
+  ]
+}

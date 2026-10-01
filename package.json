@@ -1,0 +1,21 @@
+{
+  "name": "skills-nuxt4-tw-webapp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dezineer webapp skills — Agent Skills for Nuxt 4 + Tailwind CSS web applications",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test scripts/lib/skills.test.mjs",
+    "validate": "node scripts/validate-skills.mjs",
+    "validate:spec": "node scripts/validate-spec.mjs",
+    "index": "node scripts/build-index.mjs",
+    "index:check": "node scripts/build-index.mjs --check"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

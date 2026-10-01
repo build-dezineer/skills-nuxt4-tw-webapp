@@ -1,0 +1,42 @@
+{
+  "skill_name": "metric-card",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build the KPI row for the dashboard home: total users, revenue, active projects and conversion rate. Make total users the standout card and give each card a different colour so the row doesn't look flat.",
+      "expected_output": "A responsive grid of four MetricCard instances — one hero variant spanning extra columns with an explicit widest-breakpoint reset, the rest icon/default variants with different categorical icon-color tokens — wrapped in .stagger-children.",
+      "files": [],
+      "assertions": [
+        "Imports MetricCard from ~/components/shared/MetricCard.vue and does not hand-roll a stat card",
+        "Exactly one card uses variant=\"hero\" and it passes a column span plus a widest-breakpoint reset (e.g. sm:col-span-2 xl:col-span-1)",
+        "icon-color values differ across the row (chart-1, chart-2, chart-3, chart-4)",
+        "The grid wrapper carries the .stagger-children class",
+        "Values are passed as formatted display strings, with no separate count-up wiring"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "For the SaaS dashboard I need MRR as a sparkline over the last 12 months and a progress card for the quarterly revenue quota ($340k of $500k).",
+      "expected_output": "One sparkline MetricCard with 7–14 realistic sparkData points and one progress card driven by progress.current/progress.max, both using the pre-built component.",
+      "files": [],
+      "assertions": [
+        "sparkData has 7–14 points with natural variation, not a trivially increasing sequence",
+        "The progress card passes progress: { current, max } rather than a custom bar",
+        "No inline SVG or custom progress markup is hand-rolled",
+        "Both cards are MetricCard instances from ~/components/shared/MetricCard.vue"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The dashboard KPIs load from the API and take a moment. While loading, the row currently jumps because the cards pop in with dashes; make it feel stable.",
+      "expected_output": "The same MetricCard grid with the loading prop set while data is pending, so skeletons hold the layout instead of placeholder values; formatted values appear when data resolves.",
+      "files": [],
+      "assertions": [
+        "Passes :loading to MetricCard while the request is pending",
+        "Does not render placeholder text like '--' or 0 as the loading treatment",
+        "The grid keeps the same column classes so layout does not shift",
+        "Resolved values are formatted display strings"
+      ]
+    }
+  ]
+}

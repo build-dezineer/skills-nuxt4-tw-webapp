@@ -1,0 +1,128 @@
+{
+  "skills": [
+    {
+      "name": "auth",
+      "files": [
+        "SKILL.md",
+        "references/fields.md",
+        "references/variants.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "cart-checkout",
+      "files": [
+        "SKILL.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "chart",
+      "files": [
+        "SKILL.md",
+        "evals/evals.json"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "commerce-admin",
+      "files": [
+        "SKILL.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "commerce-core",
+      "files": [
+        "SKILL.md",
+        "references/mock-data.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "dashboard-motion",
+      "files": [
+        "SKILL.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "drawer",
+      "files": [
+        "SKILL.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "form",
+      "files": [
+        "SKILL.md",
+        "evals/evals.json"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "kanban",
+      "files": [
+        "SKILL.md",
+        "references/card-drawer.md",
+        "references/drag-drop.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "media",
+      "files": [
+        "SKILL.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "metric-card",
+      "files": [
+        "SKILL.md",
+        "evals/evals.json"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "modal",
+      "files": [
+        "SKILL.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "product-catalog",
+      "files": [
+        "SKILL.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "product-detail",
+      "files": [
+        "SKILL.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "sidenav",
+      "files": [
+        "SKILL.md",
+        "references/variants.md"
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "name": "table",
+      "files": [
+        "SKILL.md",
+        "evals/evals.json",
+        "references/data-table-component.md",
+        "references/pagination.md"
+      ],
+      "version": "1.0.0"
+    }
+  ]
+}
