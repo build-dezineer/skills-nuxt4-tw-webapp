@@ -59,6 +59,44 @@ export function listFiles(dir) {
   return files.sort()
 }
 
+export const CHECKER_REL_PATH = 'checks/validate.mjs'
+export const CHECKER_MAX_BYTES = 64 * 1024
+
+const CHECKER_FORBIDDEN = [
+  { re: /^[ \t]*import[\s(]/m, label: 'import statements' },
+  { re: /\bimport\s*\(/, label: 'dynamic import()' },
+  { re: /\brequire\s*\(/, label: 'require()' },
+  { re: /\bprocess\b/, label: 'process access' },
+  { re: /\beval\s*\(/, label: 'eval()' },
+  { re: /\bnew\s+Function\b/, label: 'new Function' },
+  { re: /\bfetch\s*\(/, label: 'fetch()' },
+  { re: /\bXMLHttpRequest\b/, label: 'XMLHttpRequest' },
+  { re: /\bWebSocket\b/, label: 'WebSocket' },
+  { re: /\bchild_process\b/, label: 'child_process' },
+]
+
+/**
+ * The one accepted shape for a skill capability checker. Mirrors the app's
+ * install/run gate (see the host's checker-convention module): exactly
+ * `checks/validate.mjs`, one `export default function validate(input)`, no
+ * host access. The checker runs in a sandbox — this check keeps the published
+ * content honest before it ever ships.
+ */
+export function validateCheckerSource(source) {
+  if (Buffer.byteLength(source, 'utf8') > CHECKER_MAX_BYTES) {
+    return { ok: false, reason: 'is larger than 64 KB' }
+  }
+  const hit = CHECKER_FORBIDDEN.find((entry) => entry.re.test(source))
+  if (hit) return { ok: false, reason: `must not use ${hit.label}` }
+  if ((source.match(/^[ \t]*export\b/gm) ?? []).length > 1) {
+    return { ok: false, reason: 'must export exactly one function' }
+  }
+  if (!/^[ \t]*export[ \t]+default[ \t]+function[ \t]+validate[ \t]*\(/m.test(source)) {
+    return { ok: false, reason: 'must define `export default function validate(input)`' }
+  }
+  return { ok: true }
+}
+
 export function parseFrontmatter(text) {
   const match = /^---\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(text)
   if (!match) {

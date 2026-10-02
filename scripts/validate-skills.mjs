@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   ALLOWED_FRONTMATTER_FIELDS,
@@ -18,6 +18,7 @@ import {
   listSkillDirs,
   readSkill,
   resolveRelativeLink,
+  validateCheckerSource,
 } from './lib/skills.mjs'
 
 const problems = []
@@ -41,6 +42,17 @@ for (const name of names) {
   }
   if (existsSync(join(skillDir, 'scripts'))) {
     fail(name, 'must not contain a scripts/ directory')
+  }
+
+  const checksDir = join(skillDir, 'checks')
+  if (existsSync(checksDir)) {
+    const entries = readdirSync(checksDir, { withFileTypes: true })
+    if (entries.length !== 1 || entries[0].name !== 'validate.mjs' || !entries[0].isFile()) {
+      fail(name, 'checks/ may contain only validate.mjs')
+    } else {
+      const result = validateCheckerSource(readFileSync(join(checksDir, 'validate.mjs'), 'utf8'))
+      if (!result.ok) fail(name, `checks/validate.mjs ${result.reason}`)
+    }
   }
 
   let skill

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { findRelativeLinks, parseFrontmatter, resolveRelativeLink, stripFencedCode } from './skills.mjs'
+import { findRelativeLinks, parseFrontmatter, resolveRelativeLink, stripFencedCode, validateCheckerSource } from './skills.mjs'
 
 test('parseFrontmatter returns data and body', () => {
   const text = '---\nname: hero\ndescription: Builds a hero.\n---\n\n# Hero\n\nBody.\n'
@@ -62,4 +62,42 @@ test('resolveRelativeLink resolves against the containing file directory', () =>
     resolveRelativeLink('/repo/skills/kanban', 'references/card-drawer.md', '../assets/board.svg'),
     '/repo/skills/kanban/assets/board.svg',
   )
+})
+
+test('validateCheckerSource accepts the documented checker shape', () => {
+  const source = 'export default function validate(input) {\n  return { findings: [] }\n}\n'
+  assert.deepEqual(validateCheckerSource(source), { ok: true })
+})
+
+test('validateCheckerSource rejects host access and imports', () => {
+  const cases = [
+    ["import fs from 'node:fs'\nexport default function validate(input) {}", /import statements/],
+    ['export default function validate(input) { process.exit(1) }', /process access/],
+    ['export default function validate(input) { eval("1") }', /eval/],
+    ['export default function validate(input) { fetch("https://x") }', /fetch/],
+    ['const fs = require("fs")\nexport default function validate(input) {}', /require/],
+    ['export default function validate(input) { new Function("return 1")() }', /new Function/],
+  ]
+  for (const [source, reason] of cases) {
+    const result = validateCheckerSource(source)
+    assert.equal(result.ok, false, source)
+    assert.match(result.reason, reason)
+  }
+})
+
+test('validateCheckerSource requires exactly one default validate export', () => {
+  const missingDefault = validateCheckerSource('function validate(input) {}')
+  assert.equal(missingDefault.ok, false)
+  assert.match(missingDefault.reason, /export default function validate/)
+
+  const extraExport = validateCheckerSource('export const helper = 1\nexport default function validate(input) {}')
+  assert.equal(extraExport.ok, false)
+  assert.match(extraExport.reason, /exactly one function/)
+})
+
+test('validateCheckerSource rejects oversized checkers', () => {
+  const source = 'export default function validate(input) {}\n' + 'x'.repeat(64 * 1024)
+  const result = validateCheckerSource(source)
+  assert.equal(result.ok, false)
+  assert.match(result.reason, /larger than 64 KB/)
 })
