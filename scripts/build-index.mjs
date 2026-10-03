@@ -1,11 +1,29 @@
 #!/usr/bin/env node
 import { readFileSync, writeFileSync } from 'node:fs'
-import { INDEX_PATH, collectIndex } from './lib/skills.mjs'
+import { join } from 'node:path'
+import { INDEX_PATH, REPO_ROOT, collectIndex } from './lib/skills.mjs'
 
+const PACK_PATH = join(REPO_ROOT, 'pack.json')
 const checkOnly = process.argv.includes('--check')
 
+/** Pack display metadata — what a consumer (Dezineer Settings) shows for this
+ *  install: a friendly name and a one-line description of the library. */
+function readPack() {
+  let raw
+  try {
+    raw = JSON.parse(readFileSync(PACK_PATH, 'utf8'))
+  } catch (error) {
+    throw new Error(`pack.json is missing or invalid: ${error.message}`)
+  }
+  const name = typeof raw?.name === 'string' ? raw.name.trim() : ''
+  const description = typeof raw?.description === 'string' ? raw.description.trim() : ''
+  if (!name || name.length > 64) throw new Error('pack.json: name must be 1-64 characters')
+  if (!description || description.length > 300) throw new Error('pack.json: description must be 1-300 characters')
+  return { name, description }
+}
+
 function build() {
-  return `${JSON.stringify({ skills: collectIndex() }, null, 2)}\n`
+  return `${JSON.stringify({ ...readPack(), skills: collectIndex() }, null, 2)}\n`
 }
 
 let expected

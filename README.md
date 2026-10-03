@@ -107,7 +107,8 @@ skills/<name>/SKILL.md      # required: frontmatter + instructions
 skills/<name>/references/   # optional: detail loaded only when the skill says to
 skills/<name>/checks/       # optional: checks/validate.mjs capability checker
 skills/<name>/evals/        # optional: evals/evals.json test cases
-skills/index.json           # generated catalog (name, files, version)
+pack.json                   # pack display metadata (name, description)
+skills/index.json           # generated catalog (pack metadata + name, files, version)
 scripts/                    # repo tooling (validation, index build)
 ```
 
