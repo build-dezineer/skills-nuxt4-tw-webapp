@@ -6,6 +6,18 @@ import { INDEX_PATH, REPO_ROOT, collectIndex } from './lib/skills.mjs'
 const PACKAGE_PATH = join(REPO_ROOT, 'package.json')
 const checkOnly = process.argv.includes('--check')
 
+/** The project types this pack targets. This repository packages web app skills
+ *  only; consumers read `appType` from the catalog as the pack-wide default.
+ *  (`both` = website+webapp, `all` = every known type; a skill may override
+ *  with its own `metadata.app-type`.) */
+const APP_TYPE = 'webapp'
+const APP_TYPE_VALUES = new Set(['website', 'webapp', 'mobile', 'both', 'all'])
+
+function readAppType() {
+  if (!APP_TYPE_VALUES.has(APP_TYPE)) throw new Error(`APP_TYPE must be one of: ${[...APP_TYPE_VALUES].join(', ')}`)
+  return APP_TYPE
+}
+
 function readDescription() {
   let raw
   try {
@@ -19,7 +31,7 @@ function readDescription() {
 }
 
 function build() {
-  return `${JSON.stringify({ description: readDescription(), skills: collectIndex() }, null, 2)}\n`
+  return `${JSON.stringify({ description: readDescription(), appType: readAppType(), skills: collectIndex() }, null, 2)}\n`
 }
 
 let expected

@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import {
   ALLOWED_FRONTMATTER_FIELDS,
   ALLOWED_METADATA_KEYS,
+  APP_TYPE_VOCABULARY,
   COMPATIBILITY_MAX,
   DESCRIPTION_MAX,
   INDEX_PATH,
@@ -114,6 +115,17 @@ for (const name of names) {
       }
       for (const required of REQUIRED_STACK_TOKENS) {
         if (!tokens.includes(required)) fail(name, `metadata.stack is missing base token: ${required}`)
+      }
+    }
+    if (metadata['app-type'] !== undefined) {
+      if (typeof metadata['app-type'] !== 'string' || metadata['app-type'].trim() === '') {
+        fail(name, 'metadata.app-type must be a non-empty string')
+      } else {
+        const tokenList = metadata['app-type'].split(/[,|]+/).map((token) => token.trim()).filter(Boolean)
+        if (tokenList.length === 0) fail(name, 'metadata.app-type must name at least one app type')
+        for (const token of tokenList) {
+          if (!APP_TYPE_VOCABULARY.has(token)) fail(name, `metadata.app-type token not in vocabulary: ${token}`)
+        }
       }
     }
   }

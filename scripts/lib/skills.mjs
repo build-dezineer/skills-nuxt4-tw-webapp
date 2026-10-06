@@ -16,7 +16,11 @@ export const ALLOWED_FRONTMATTER_FIELDS = new Set([
   'allowed-tools',
 ])
 
-export const ALLOWED_METADATA_KEYS = new Set(['version', 'tags', 'stack'])
+export const ALLOWED_METADATA_KEYS = new Set(['version', 'tags', 'stack', 'app-type'])
+
+/** App types a skill may target (`metadata.app-type`); `both` = website+webapp,
+ *  `all` = every known type. Absent = the pack's `appType` default. */
+export const APP_TYPE_VOCABULARY = new Set(['website', 'webapp', 'mobile', 'both', 'all'])
 
 export const STACK_VOCABULARY = new Set([
   'nuxt4',

@@ -1,5 +1,6 @@
 {
   "description": "Dezineer webapp skills — Agent Skills for Nuxt 4 + Tailwind CSS web applications",
+  "appType": "webapp",
   "skills": [
     {
       "name": "auth",

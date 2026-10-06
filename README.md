@@ -98,7 +98,9 @@ media pipeline. `compatibility` and `metadata.stack` on each skill declare this.
 Patterns may transfer to a plain Nuxt 4 project that provides the same primitives.
 
 Each skill folder is self-contained; you can install only the skills relevant to a
-project.
+project. The pack itself is labeled in the generated catalog (`appType: webapp`), so
+Dezineer only offers it to web app projects. A single skill can override that default
+with its own `metadata.app-type`.
 
 ## Repository structure
 
@@ -108,7 +110,7 @@ skills/<name>/references/   # optional: detail loaded only when the skill says t
 skills/<name>/checks/       # optional: checks/validate.mjs capability checker
 skills/<name>/evals/        # optional: evals/evals.json test cases
 package.json                # repository identity and install description
-skills/index.json           # generated catalog (description + name, files, version)
+skills/index.json           # generated catalog (description, app-type + name, files, version)
 scripts/                    # repo tooling (validation, index build)
 ```
 
